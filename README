@@ -1,0 +1,19 @@
+1. Make vocabulary 
+
+$ python mk-vocab.py out.txt vocab 50000
+
+2. Make SQuAD vocab 
+
+$ python mk_squad_vocab.py --global_vocab vocab_100K --squad_dataset train-v1.1.json --out squad_vocab_100K
+
+3. Make co-occur matrix
+
+$ python mk-co-occur-matrix.py 5 out.txt vocab_100K matrix_100K
+
+4. If required join dumps
+ 
+$ python accum_dumps.py matrix_100K matrix_100K_0 matrix_100K_1 matrix_100K_2
+
+4. Reduce co-occur matrix
+
+$ python reduce_matrix.py --global_vocab vocab_100K --squad_vocab squad_vocab_100K --matrix matrix_100K --threshold 2 --out matrix_100K_reduced
